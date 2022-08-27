@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/podluzhnyyK/fullstack-javascript-project-44/workflows/hexlet-check/badge.svg)](https://github.com/podluzhnyyK/fullstack-javascript-project-44/actions)",
   "main": "index.js",
+  "types": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,6 +15,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/podluzhnyyK/fullstack-javascript-project-44/issues"
+  },
+  "bin": {
+    "brain-games": "bin/brain-games.js"
   },
   "homepage": "https://github.com/podluzhnyyK/fullstack-javascript-project-44#readme"
 }
