@@ -52,6 +52,10 @@ function getCalc() {
       console.log(`Let's try again, ${userName}!`);
       break;
     }
+
+    if (step === 3) {
+      console.log(`Congratulations, ${userName}!`);
+    }
   }
 }
 
