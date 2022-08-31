@@ -14,8 +14,14 @@ function randomIntFromInterval(min, max) {
 
 function isPrime(num) {
   for (let i = 2; i <= Math.sqrt(num);) {
-    if (num % i === 0) return false;
-    i === 2 ? i += 1 : i += 2;
+    if (num % i === 0) {
+      return false;
+    }
+    if (i === 2) {
+      i += 1;
+    } else {
+      i += 2;
+    }
   }
   return num > 1;
 }

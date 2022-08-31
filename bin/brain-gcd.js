@@ -12,15 +12,12 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function NOD() {  
-  for (let x = arguments[0], i = 1; i < arguments.length; i += 1) {
-    let y = arguments[i];
-    while (x && y) {
-      x > y ? x %= y : y %= x;
-    }
-    x += y;
+function NOD(a, b) {
+  if (!b) {
+    return a;
   }
-  return x;
+
+  return NOD(b, a % b);
 }
 
 function getGCD() {
