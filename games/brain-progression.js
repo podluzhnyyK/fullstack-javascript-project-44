@@ -15,11 +15,12 @@ export default function getProgression() {
   while (step < 3) {
     const firstProgression = randomIntFromInterval(1, 20);
     const stepProgression = randomIntFromInterval(1, 10);
-    const hiddenNumberIndex = randomIntFromInterval(0, 9);
+    const lengthprogressionArray = randomIntFromInterval(5, 10);
+    const hiddenNumberIndex = randomIntFromInterval(0, lengthprogressionArray);    
     let hiddenNumber = 0;
     const rogressionArray = [];
 
-    for (let i = firstProgression; rogressionArray.length < 10; i += stepProgression) {
+    for (let i = firstProgression; rogressionArray.length < lengthprogressionArray; i += stepProgression) {
       rogressionArray.push(i);
 
       if (rogressionArray.length - 1 === hiddenNumberIndex) {
@@ -28,7 +29,7 @@ export default function getProgression() {
       }
     }
 
-    console.log(`Question: ${rogressionArray}`); // error .join(' ')
+    console.log(`Question: ${rogressionArray.join(' ')}`);
     const intAnswer = readlineSync.question('Your answer: ');
 
     if (Number(intAnswer) === hiddenNumber) {
