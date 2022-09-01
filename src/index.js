@@ -1,15 +1,28 @@
 #!/usr/bin/env node
+
 import readlineSync from 'readline-sync';
 
-console.log('Welcome to the Brain Games!');
+const roundsCount = 3;
 
-const userName = readlineSync.question('May I have your name? ');
+const playGame = (description, generateRound) => {
+  console.log('Welcome to the Brain Games!');
+  const userName = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  console.log(description);
 
-console.log(`Hello, ${userName}!`);
+  for (let i = 0; i < roundsCount; i += 1) {
+    const [question, answer] = generateRound();
+    console.log(`Question: ${question}`);
+    const userAnswer = readlineSync.question('Your answer: ');
 
-// function game() {
+    if (answer !== userAnswer) {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'. Let's try again, ${userName}!`);
+      return;
+    }
 
-//     let step = 0;
+    console.log('Correct!');
+  }
+  console.log(`Congratulations, ${userName}!`);
+};
 
-//     while (step < 3) {}
-// }
+export default playGame;

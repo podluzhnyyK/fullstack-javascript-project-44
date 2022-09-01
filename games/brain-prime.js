@@ -1,12 +1,6 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
 import randomIntFromInterval from '../src/cli.js';
-
-console.log('Welcome to the Brain Games!');
-
-const userName = readlineSync.question('May I have your name? ');
-
-console.log(`Hello, ${userName}!`);
+import playGame from '../src/index.js';
 
 function isPrime(num) {
   for (let i = 2; i <= Math.sqrt(num);) {
@@ -22,34 +16,16 @@ function isPrime(num) {
   return num > 1;
 }
 
-export default function getPrime() {
-  let step = 0;
-  console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  while (step < 3) {
-    const rndInt = randomIntFromInterval(1, 100);
-    console.log(`Question: ${rndInt}`);
+function getPrime() {
+  const rndInt = randomIntFromInterval(1, 100);
+  const question = rndInt;
+  const answer = isPrime(rndInt) ? 'yes' : 'no';
 
-    const intAnswer = readlineSync.question('Your answer: ');
-    let booleanInt = intAnswer;
-
-    if (booleanInt === 'yes') {
-      booleanInt = true;
-    } else if (booleanInt === 'no') {
-      booleanInt = false;
-    }
-
-    if (isPrime(rndInt) === booleanInt) {
-      console.log('Correct!');
-      step += 1;
-    } else {
-      console.log(`"${intAnswer}" is wrong answer ;(. Correct answer was "${booleanInt ? 'no' : 'yes'}".`);
-      console.log(`Let's try again, ${userName}!`);
-      break;
-    }
-
-    if (step === 3) {
-      console.log(`Congratulations, ${userName}!`);
-    }
-  }
+  return [question, answer];
 }
+
+const prime = () => playGame(description, getPrime);
+
+export default prime;

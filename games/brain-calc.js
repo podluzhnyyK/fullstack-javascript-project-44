@@ -1,56 +1,37 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
 import randomIntFromInterval from '../src/cli.js';
+import playGame from '../src/index.js';
 
-console.log('Welcome to the Brain Games!');
-
-const userName = readlineSync.question('May I have your name? ');
-
-console.log(`Hello, ${userName}!`);
-
+const description = 'What is the result of the expression?';
 const operators = ['+', '-', '*'];
 
-export default function getCalc() {
-  let step = 0;
-  console.log('What is the result of the expression?');
+function getCalc() {
+  let answer = 0;
+  const one = randomIntFromInterval(1, 100);
+  const two = randomIntFromInterval(1, 100);
+  const operator = randomIntFromInterval(0, operators.length - 1);
+  const question = `${one} ${operators[operator]} ${two}`;
 
-  while (step < 3) {
-    let question = 0;
-    const one = randomIntFromInterval(1, 100);
-    const two = randomIntFromInterval(1, 100);
-    const operator = randomIntFromInterval(0, operators.length - 1);
-    console.log(`Question: ${one} ${operators[operator]} ${two}`);
-
-    switch (operators[operator]) {
-      case '+':
-        question = one + two;
-        break;
-      case '-':
-        question = one - two;
-        break;
-      case '*':
-        question = one * two;
-        break;
-      case '/':
-        question = one / two;
-        break;
-      default:
-        break;
-    }
-
-    const intAnswer = readlineSync.question('Your answer: ');
-
-    if (Number(intAnswer) === question) {
-      console.log('Correct!');
-      step += 1;
-    } else {
-      console.log(`"${intAnswer}" is wrong answer ;(. Correct answer was "${question}".`);
-      console.log(`Let's try again, ${userName}!`);
+  switch (operators[operator]) {
+    case '+':
+      answer = one + two;
       break;
-    }
-
-    if (step === 3) {
-      console.log(`Congratulations, ${userName}!`);
-    }
+    case '-':
+      answer = one - two;
+      break;
+    case '*':
+      answer = one * two;
+      break;
+    case '/':
+      answer = one / two;
+      break;
+    default:
+      break;
   }
+
+  return [question, String(answer)];
 }
+
+const calc = () => playGame(description, getCalc);
+
+export default calc;
